@@ -80,4 +80,32 @@ public class SpoonTest {
         assertFalse(cup.equals(ounces));
     }
 
+    @Test
+    public void testThreeTeaSpoonPlusSixTeaSpoonEqualsNineTeaSpoons() throws Exception {
+        Measure teaspoon3 = Measure.createTeaSpoon(3);
+        Measure teaspoon6 = Measure.createTeaSpoon(6);
+        Measure teaspoon9 = Measure.createTeaSpoon(9);
+        assertThat(teaspoon3.add(teaspoon6), is(teaspoon9));
+
+
+    }
+
+
+    @Test
+    public void testThreeTeaSpoonPlusSixTeaSpoonEqualsThreeTableSpoons() throws Exception {
+        Measure teaspoon3 = Measure.createTeaSpoon(3);
+        Measure teaspoon6 = Measure.createTeaSpoon(6);
+        Measure tablespoon3 = Measure.createTableSpoon(3);
+        assertThat(teaspoon3.add(teaspoon6), is(tablespoon3));
+    }
+
+    @Test
+    public void testOnePintPlusTwoCupsEqualsTwoPints() throws Exception {
+        Measure onepint = Measure.createPint(1);
+        Measure twocups = Measure.createCup(2);
+        Measure twopints = Measure.createPint(2);
+        assertThat(onepint.add(twocups), is(twopints));
+    }
+
+
 }

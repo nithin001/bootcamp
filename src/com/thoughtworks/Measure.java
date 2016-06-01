@@ -6,30 +6,38 @@ package com.thoughtworks;
 public class Measure {
     private int totalCapacity;
 
-    private static final int TEASPOON_FACTOR = 1;
-    private static final int TABLESPOON_FACTOR = 3 * TEASPOON_FACTOR;
-    private static final int OUNCE_FACTOR = TABLESPOON_FACTOR * 2;
-    private static final int CUP_FACTOR = OUNCE_FACTOR * 8;
 
 
-    private Measure(int capacity) {
-        this.totalCapacity = capacity;
+    private Measure(int quantity) {
+        this.totalCapacity = quantity;
     }
 
     public static Measure createTeaSpoon(int quantity) {
-        return new Measure(quantity * TEASPOON_FACTOR);
+        return new Measure(Type.TEASPOON.getInBaseUnits(quantity));
     }
 
     public static Measure createTableSpoon(int quantity) {
-        return new Measure(quantity * TABLESPOON_FACTOR);
+        return new Measure(Type.TABLESPOON.getInBaseUnits(quantity));
     }
 
     public static Measure createOunce(int quantity) {
-        return new Measure(quantity * OUNCE_FACTOR);
+        return new Measure(Type.OUNCE.getInBaseUnits(quantity));
     }
 
     public static Measure createCup(int quantity) {
-        return new Measure(quantity * CUP_FACTOR);
+        return new Measure(Type.CUP.getInBaseUnits(quantity));
+    }
+
+    public static Measure createPint(int quantity) {
+        return new Measure(Type.PINT.getInBaseUnits(quantity));
+    }
+
+    public static Measure createQuart(int quantity) {
+        return new Measure(Type.QUART.getInBaseUnits(quantity));
+    }
+
+    public static Measure createGallon(int quantity) {
+        return new Measure(Type.GALLON.getInBaseUnits(quantity));
     }
 
     @Override
@@ -49,4 +57,7 @@ public class Measure {
     }
 
 
+    public Measure add(Measure that) {
+        return new Measure(this.totalCapacity+that.totalCapacity);
+    }
 }
